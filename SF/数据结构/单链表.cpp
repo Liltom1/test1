@@ -155,7 +155,7 @@ void CreateList_H(LinkList &L,int n){//头插法建立链表
     }
 }
 
-void CreateList_H(LinkList &L,int n){
+void CreateList_L(LinkList &L,int n){//尾插法创建单链表
     L=new LNode;
     L->next=NULL;
     LNode *p;
