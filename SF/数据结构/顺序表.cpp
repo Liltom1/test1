@@ -43,7 +43,7 @@ int IsEmpty(SqList L){//判断是否为空表
     else return 0;
 }
 
-int Getdata(SqList L,int i,ElemType e){//取出顺序表的元素
+int Getdata(SqList L,int i,ElemType &e){//取出顺序表的元素
     if(i<1||i>L.length) return ERROR;
     e=L.data[i-1];
     return 0;
@@ -67,11 +67,24 @@ Status ListInsert_Sq(SqList &L,int i,ElemType e){//顺序表插入元素
     return OK;
 }
 
-Status ListDelet_Sq(SqList &L,int i){
+Status ListDelet_Sq(SqList &L,int i){//删除元素
     if(L.length == 0) return ERROR;
     for(int j=i-1;j<L.length-i;j++){
         L.data[j]=L.data[j+1];
     } 
     L.length--;
     return OK;
+}
+
+void union1(SqList &La,SqList Lb){//顺序表合并
+    ElemType e;
+    int La_len,Lb_Len;
+    La_len=GetLength(La);
+    Lb_Len=GetLength(Lb);
+    for(int i=1;i<=Lb_Len;i++){
+        Getdata(Lb,i,e);
+        if(!LocateElem(La,e)){
+            ListInsert_Sq(La,++La_len,e);
+        }
+    }
 }

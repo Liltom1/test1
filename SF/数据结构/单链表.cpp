@@ -169,3 +169,24 @@ void CreateList_L(LinkList &L,int n){//尾插法创建单链表
         r=p;//r指向新的尾结点
     }
 }
+
+void MergeList_L(LinkList &La,LinkList &Lb,LinkList &Lc){//有序表的合并
+    LinkList pa,pb,pc;
+    pa=La->next;
+    pb=Lb->next;
+    pc=Lc=La;//用La的头结点作为Lc的头结点
+    while(pa&&pb){
+        if(pa->data<=pb->data){
+            pc->next=pa;
+            pc=pa;
+            pa=pa->next;
+        }
+        else{
+            pc->next=pb;
+            pc=pb;
+            pb=pb->next;
+        }
+    }
+    pc->next=pa?pa:pb;//插入剩余段
+    delete Lb;//释放Lb的头结点
+}
